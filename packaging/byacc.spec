@@ -6,6 +6,7 @@ Group:          Development/Languages/C and C++
 License:        SUSE-Public-Domain
 Url:            http://invisible-island.net/byacc/byacc.html
 Source:         http://invisible-island.net/datafiles/release/byacc.tar.gz
+Source1001: 	byacc.manifest
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -16,6 +17,7 @@ dependencies upon a particular compiler.
 
 %prep
 %setup
+cp %{SOURCE1001} .
 
 %build
 # without --with-warnings several functions will not be marked with gcc's
@@ -30,6 +32,7 @@ mv %{buildroot}%{_bindir}/yacc %{buildroot}%{_bindir}/byacc
 %remove_docs
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_bindir}/byacc
 
